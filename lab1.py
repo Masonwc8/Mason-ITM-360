@@ -1,16 +1,21 @@
+# Looks like a lot is missing in the file; please double check the starting python file for details.
 import random
 
 class Pet:
+    # missing 3 class attributes: -6 points
     food_reduce = 2
     food_warning = 3
     boredom_max = 10
     sounds = ["Tomagotchi!","Grrr...."]
 
     def __init__(self, name):
+        # missing food and boredom variables: -6 points
         self.name = name
         self.food = random.randint(0, self.food_reduce * 5)  # Random initial food level
         self.sounds = Pet.sounds
 
+    # missing bathe and greet methods: -12 points
+    
     def clock_tick(self):
         self.boredom_max += 1
         self.food = max(0, self.food - Pet.food_reduce)
