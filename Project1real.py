@@ -5,17 +5,19 @@ import mysql.connector
 
 class PasswordManager:
     def __init__(self, root):
-        self.root = root
+        self.root = root 
         self.root.title("Password Manager")
 
 
         
-        # Database of registered users (username, email, password)
+        # Database of registered users (username, email, password) 
+        # To return registered users in database; need to call the connection to database through mysql.connector.connect()
+        # then wrap the returned records in python objects to allow following condition checks: -10 pts
         self.users = {
             "user1": ("user1@example.com", "password1"),
             "user2": ("user2@example.com", "password2")
         }
-        self.user_database = {
+        self.user_database = {     #similarly, for change_password button's functionality, missing a db connection: -10pts
             "admin": {
                 "email": "admin@example.com",
                 "password": "admin"
@@ -230,7 +232,7 @@ loginRecord = """CREATE TABLE ADMINDATA (
 
 cursor.execute(loginRecord)
 
-sql = "INSERT INTO ADMINDATA (EMAIL, PASSWORD, USERID) VALUES (%s, %s)"
+sql = "INSERT INTO ADMINDATA (EMAIL, PASSWORD, USERID) VALUES (%s, %s)" # 3 paramters with 2 values inputs? -3 pts
 test_student = ('Mia', '123456')
 cursor.execute(sql, test_student)
 
