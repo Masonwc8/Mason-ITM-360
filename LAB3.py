@@ -14,7 +14,9 @@ def create_connection():
     except Error as e:
         print(f"Error connecting to MySQL Platform: {e}")
         return None
+# -20 pts, missing the table creation functions.
 
+# -10 pts, the attributes that are managed by addBook(), searchBook(), and updateBook(), are not as required according to the database screenshots.
 def addBook():
     """ Function to add a book to the Bookrecord table """
     try:
@@ -25,7 +27,7 @@ def addBook():
             title = input("Enter Title: ")
             author = input("Enter Author: ")
             isbn = input("Enter ISBN: ")
-            publication_year = input("Enter Publication Year: ")
+            publication_year = input("Enter Publication Year: ") 
             
             query = """INSERT INTO Bookrecord (Bno, Title, Author, ISBN, PublicationYear)
                        VALUES (%s, %s, %s, %s, %s);"""
