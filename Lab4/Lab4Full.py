@@ -1,3 +1,6 @@
+# Because the other 3 files are incomplete in many functions, the grading is determined based on this file.
+# This file is not modularized into structured modules. Counting in the efforts from the other 3 files, half points are off. -10pts.
+
 # Import necessary libraries
 from flask import Flask, render_template, redirect, url_for, request
 from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
@@ -33,7 +36,7 @@ def createtable():
 
     library_record = """CREATE TABLE LIBRARY ( 
                     MNO  VARCHAR(50) NOT NULL, 
-                    PASSWORD VARCHAR(20) NOT NULL
+                    PASSWORD VARCHAR(20) NOT NULL #-5pts, password needs to be created as a longtext data type to allow its hash to be inserted properly
                     )
                     """
 
@@ -61,7 +64,7 @@ class User(UserMixin):
 
 # Set up the LoginManager
 login_manager = LoginManager()
-login_manager.init_app(app)
+login_manager.init_app(app) 
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -114,7 +117,7 @@ def login():
         result = cursor.fetchone()
 
         if result and check_password_hash(result[1], password):
-            user = User(result[0], result[0], result[1])
+            user = User(result[0], result[0], result[1]) # User class only has two placeholders for mno and password; -2pts
             login_user(user)
             return redirect(url_for('protected'))
         else:
