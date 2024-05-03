@@ -1,3 +1,5 @@
+# The modules in this folder do not talk with other; the app will execute given their independencies; -30pts
+# missing a README file explaining the structure and the functionalities this app can serve. -10pts
 
 
 import mysql.connector
@@ -8,13 +10,13 @@ app = Flask(__name__)
 @app.route('/login', methods=['POST'])
 def login():
     # Implement login functionality
-    data = request.get_json()
+    data = request.get_json() 
     username = data['username']
     password = data['password']
     # Verify username and password from database
     return jsonify({"message": "Login successful"})  # Placeholder
 
-# Add more routes for task management
+# Add more routes for task management 
 
 if __name__ == '__main__':
     app.run(debug=True)
