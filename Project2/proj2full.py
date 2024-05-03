@@ -82,10 +82,11 @@ class PasswordManager:
         username = self.studentid_entry.get()
         password = self.password_entry.get()
         url = 'http://127.0.0.1:5000/login'
-        resp = request.post(url, data={'StudentId':username.get(), 'Password':password.get()})
+        resp = request.post(url, data={'StudentId':username.get(), 'Password':password.get()}) # Given data = request.json in login route, the parameter should be json rather than data in this post method; -5pts
+               # requests.post() to send an outgoing request; -5pts
         # Check if the provided username and password match any registered user's credentials
         if username in self.users:
-            if password == self.users[username][1]:
+            if password == self.users[username][1]: #UI will not talk with the database directly; By evaluating the server's responses, the UI will return different messagebox alerts -5pts
                 messagebox.showinfo("Login Successful", "Welcome, " + username + "!")
             else:
                 messagebox.showerror("Login Failed", "Incorrect password!")
@@ -125,13 +126,15 @@ class PasswordManager:
         signup_button.pack(pady=10)
 
     def sign_up(self, username, email, password, GPA):
-        # Placeholder for sign-up logic
+        # Placeholder for sign-up logic  #incomplete; -10pts
         if username in self.users:
             messagebox.showerror("Error", "Student ID already exists!")
             return
         self.users[username] = (email, password,GPA)
         messagebox.showinfo("Success", "Account created successfully!")
 
+    #the UI for protected page is not defined. -10pts
+    
 if __name__ == "__main__":
     root = tk.Tk()
     app = PasswordManager(root)
