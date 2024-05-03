@@ -1,3 +1,5 @@
+# There is no widget that will present a protected page. -10pts
+
 import tkinter as tk
 import requests
 
