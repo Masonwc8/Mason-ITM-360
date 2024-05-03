@@ -6,7 +6,7 @@ blueprint = Blueprint('blueprint', __name__)
 
 @blueprint.route('/signup', methods=['POST'])
 def signup():
-    data = request.json
+    data = request.json 
     db = mysql.connector.connect(
         host="localhost",
         user="root",
@@ -36,11 +36,12 @@ def login():
     mycursor.execute("SELECT Password, StudentID FROM Students WHERE Email = %s", (data['Email'],))
     record = mycursor.fetchone()
     if record and check_password_hash(record[0], data['Password']):
-        session['student_id'] = record[1]  # Save the student id in session
+        session['student_id'] = record[1]  # Save the student id in session #session is not yet declared; -5pts
         return jsonify({'message': 'Login succeeded!'}), 200
     return jsonify({'message': 'Login failed! Wrong email or password'}), 401
 
 @blueprint.route('/gpa', methods=['GET'])
+#@flask_login.login_required, so it is protected for authenticated user only; -5pts
 def get_gpa():
     db = mysql.connector.connect(
         host="localhost",
