@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify, session
 from werkzeug.security import generate_password_hash, check_password_hash
-from database.db import get_db_connection
+from database.db import get_db_connection #no external module named as database
 
 blueprint = Blueprint('blueprint', __name__)
 
@@ -17,6 +17,7 @@ def login():
     return jsonify({'message': 'Login failed'}), 401
 
 @blueprint.route('/protected', methods=['GET'])
+# flask_login.login_required -5pts
 def protected():
     if 'user_id' not in session:
         return jsonify({'message': 'Unauthorized'}), 401
